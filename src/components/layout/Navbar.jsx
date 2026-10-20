@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useLocation } from "react-router-dom";
 
 import { BurgerMenuIcon, NotificationIcon } from "../../assets/Icons";
+import Notifications from "./Notifications";
+
 import { useAuth } from "../../context/AuthContext";
 
 const titles = {
@@ -29,7 +31,8 @@ function getTitle(pathname) {
 const Navbar = ({ burgerMenuActive, setBurgerMenuActive }) => {
   const { user } = useAuth();
   const { pathname } = useLocation();
-  const [hasNotifications, setHasNotifications] = useState(true);
+  const [notificationOpen, setNotificationOpen] = useState(false)
+  const [unreadCount, setUnreadCount] = useState(0)
 
   const title = getTitle(pathname);
   const section = user?.role === "admin" ? "Admin" : "Student";
@@ -59,19 +62,23 @@ const Navbar = ({ burgerMenuActive, setBurgerMenuActive }) => {
       </div>
 
       <div className="relative">
-        {hasNotifications && (
+        {true && (
           <span className="absolute right-2 top-2 z-10 h-2.5 w-2.5 rounded-full border-2 border-[#0d121a] bg-rose-500" />
         )}
 
         <button
           type="button"
           aria-label="Notifications"
-          onClick={() => setHasNotifications(false)}
+          onClick={() => (setNotificationOpen(!notificationOpen))}
           className="rounded-xl border border-white/8 bg-white/3 p-2 transition hover:bg-white/8"
         >
           <NotificationIcon size={28} />
         </button>
       </div>
+      {
+        notificationOpen &&
+        <Notifications />
+      }
     </header>
   );
 };

@@ -127,7 +127,7 @@ const Reports = ({ status, title = "All Reports" }) => {
                     <div className="flex items-center gap-2">
                       {report.status === "Pending" && (
                         <>
-                          <ActionButton onClick={() => updateReport(report.code, "Verified")}>
+                          <ActionButton onClick={() => updateReport(report.id, "Verified")}>
                             Verify
                           </ActionButton>
                           <ActionButton danger onClick={() => updateReport(report.code, "Rejected")}>

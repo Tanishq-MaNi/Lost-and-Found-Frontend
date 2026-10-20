@@ -44,6 +44,5 @@ export async function api(path, { method = "GET", body } = {}) {
     error.data = data;
     throw error;
   }
-
   return data;
 }
