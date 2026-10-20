@@ -130,13 +130,13 @@ const Reports = ({ status, title = "All Reports" }) => {
                           <ActionButton onClick={() => updateReport(report.id, "Verified")}>
                             Verify
                           </ActionButton>
-                          <ActionButton danger onClick={() => updateReport(report.code, "Rejected")}>
+                          <ActionButton danger onClick={() => updateReport(report.id, "Rejected")}>
                             Reject
                           </ActionButton>
                         </>
                       )}
                       {report.status === "Verified" && (
-                        <ActionButton onClick={() => updateReport(report.code, "Resolved")}>
+                        <ActionButton onClick={() => updateReport(report.id, "Resolved")}>
                           Mark resolved
                         </ActionButton>
                       )}
